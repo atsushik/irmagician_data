@@ -1,4 +1,3 @@
-# irmagician_data
 # これはなに？
 [irmagician](http://www.omiya-giken.com/?page_id=837)で使うためのリモコン信号データと、それらを生成するためのスクリプト。
 # どう使えるの？
