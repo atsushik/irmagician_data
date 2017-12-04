@@ -11,12 +11,14 @@
 ## スクリプト
 ### 使用例1
 [三菱のルームエアコン(霧ヶ峰) MSZ-GV2216-W](https://www.mitsubishielectric.co.jp/ldg/wink/displayProduct.do?pid=262783&c040101410)に対して、下記の信号を送りたいときの例
+
 |オプション名|説明|値|
 |:---:|:---:|:---:|
 |mode|モード|暖房|
 |temperature|設定温度|23℃|
 |wind|風量|2|
 |louver|風向|1(真横が0〜真下が4)|
+
 ```
 python ~/git/irmagician_data/mitsubishi_msz-gv2216.py --mode warm --temperature 22 --wind 2 --louver 1 | python ~/git/irmcli/irmcli.py -p -f -
 ```
