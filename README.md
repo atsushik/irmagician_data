@@ -1,3 +1,3 @@
 # irmagician_data
 
-for use with https://github.com/netbuffalo/irmcli.git
+for use with https://github.com/atsushik/irmcli
