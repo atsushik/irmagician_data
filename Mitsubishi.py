@@ -95,17 +95,11 @@ class MSZ_GV2216():
         #print command_header, command_mode, command_temperature, command_mode2, command_wind, command_louver, command_footer + checksum
         bin_command =  command_header + command_mode + command_temperature + command_mode2 + command_wind + command_louver + command_footer + checksum
         #
-        sys.stderr.write(u"mode:%s , temperature:%s , wind:%s , louver:%s\n" % (mode, temperature, wind, louver))
-        #print len(bin_command)
-        sys.stderr.write(bin_command + "\n")
-        #print "warm17_wind2_louver0"
-        #print "110001001101001101100100100000000000000000000100000100001000000000001100010100100000000000000000000000000000000000100000000000000000000000111101"
-        #print "warm18_wind2_louver0"
-        #print "110001001101001101100100100000000000000000000100000100000100000000001100010100100000000000000000000000000000000000100000000000000000000010111101"
-        #print mode, temperature, wind, louver
-        sys.stderr.write("|-------------------------------------------||---------||--||----------||-||--||-------------------------------------------------------||------|\n")
-        sys.stderr.write("                   HEADER                        MODE          MODE2    WIND                       UNKNOWN                              checksum\n")
-        sys.stderr.write("                                                     TEMPERATURE          LOUVER\n")
+        # sys.stderr.write(u"mode:%s , temperature:%s , wind:%s , louver:%s\n" % (mode, temperature, wind, louver))
+        # sys.stderr.write(bin_command + "\n")
+        # sys.stderr.write("|-------------------------------------------||---------||--||----------||-||--||-------------------------------------------------------||------|\n")
+        # sys.stderr.write("                   HEADER                        MODE          MODE2    WIND                       UNKNOWN                              checksum\n")
+        # sys.stderr.write("                                                     TEMPERATURE          LOUVER\n")
 
         header       = [120, 53, 24, 7]
         data_delta   = [190, 53, 24, 7]
@@ -125,6 +119,6 @@ class MSZ_GV2216():
                 data['data'] += [zero_duration, off_duration]
             elif b == '1':
                 data['data'] += [one_duration,  off_duration]
-        sys.stderr.write( json.dumps(data) )
+        # sys.stderr.write( json.dumps(data) )
         return json.dumps(data)
 

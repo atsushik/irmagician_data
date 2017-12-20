@@ -3,7 +3,7 @@ from flask import Flask, jsonify, abort, make_response, request
 # import peewee
 # import json
 from Mitsubishi import MSZ_GV2216
-import irmcli
+# import irmcli
 import json
 import serial
 
@@ -14,7 +14,7 @@ ir_serial = serial.Serial("/dev/ttyACM0", 9600, timeout = 1)
 def send_with_irmagician(json_string):
 	# originally from https://github.com/netbuffalo/irmcli
 	data = json.loads(json_string)
-	print data
+	# print data
 	recNumber = len(data['data'])
 	rawX = data['data']
 
@@ -37,7 +37,7 @@ def send_with_irmagician(json_string):
 
 	ir_serial.write("p\r\n")
 	msg = ir_serial.readline()
-	print msg
+	# print msg
 	
 
 # @api.route('/msz_gv2216/<string:userId>', methods=['GET','POST'])
@@ -47,7 +47,7 @@ def send_ir_data_msz_gv2216():
 	temperature = 18
 	wind = 'Auto'
 	louver = 'Auto'
-	print request.args
+	# print request.args
 	if 'mode' in request.args.keys():
 		mode = request.args['mode']
 	if 'temperature' in request.args.keys():
