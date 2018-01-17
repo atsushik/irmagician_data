@@ -26,7 +26,7 @@ python Mitsubishi_api.py
 - つかいかた
 下記のようにすると「暖房、設定温度：２１℃、風量：２、風向：水平より１段階下向き」でエアコンを稼働させる信号をirmagician経由で送信する
 ```
-curl "http://localhost:3000/msz_gv2216?warm=21&temperature=23&wind=2&louver=1"
+curl "http://localhost:3000/msz_gv2216?mode=warm&temperature=20&wind=2&louver=1"
 ```
 
 - ファイル
