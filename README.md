@@ -17,6 +17,11 @@
 - エアコンなどの赤外線で操作される家電をWEB APIで操作できるようにするための何か。
 - irmagicianでの利用を想定している
 
+- 準備
+```
+sudo apt-get install python-flask
+```
+
 - 起動の仕方
 下記のように実行するとHTTPで待ち受ける
 ```
