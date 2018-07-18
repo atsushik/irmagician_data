@@ -19,7 +19,7 @@
 
 - 準備
 ```
-sudo apt-get install python-flask
+sudo apt-get install python-flask python-serial
 ```
 
 - 起動の仕方
