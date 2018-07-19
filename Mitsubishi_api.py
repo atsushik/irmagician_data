@@ -57,13 +57,26 @@ def send_ir_data_msz_gv2216():
 	if 'louver' in request.args.keys():
 		louver = request.args['louver']
 	msz_gv2216 = MSZ_GV2216()
-	result = msz_gv2216.get_ir_data(mode = mode,temperature = temperature,wind = wind,louver = louver ) 
+	result = msz_gv2216.get_ir_data(mode = mode,temperature = temperature,wind = wind,louver = louver )
+        import datetime
+        if not wind in ["Auto", "All"]:
+                wind = int(wind)
+        if not louver in ["Auto", "All"]:
+                louver = int(louver)
+        d = {"timestamp":datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S"), "mode":mode, "temperature":int(temperature), "wind":wind, "louver":louver}
+        write_log(d)
 	# print result
 	send_with_irmagician(result)
 
 	return make_response(jsonify(result))
 	# Unicodeにしたくない場合は↓
 	# return make_response(json.dumps(result, ensure_ascii=False))
+
+import json
+def write_log(json_data):
+	log_file = "Mitsubishi_api.log"
+        with open(log_file, mode="a") as f:
+                f.write(json.dumps(json_data) + "\n")
 
 @api.errorhandler(404)
 def not_found(error):
