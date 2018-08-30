@@ -43,11 +43,16 @@ def send_with_irmagician(json_string):
 # @api.route('/msz_gv2216/<string:userId>', methods=['GET','POST'])
 @api.route('/msz_gv2216', methods=['GET','POST'])
 def send_ir_data_msz_gv2216():
-	mode = 'warm'
+	mode        = 'warm'
 	temperature = 18
-	wind = 'Auto'
-	louver = 'Auto'
+	wind        = 'Auto'
+	louver      = 'Auto'
+        clean       = "off"
+        powerful    = "off"
+        postscale   = 100
 	# print request.args
+	if 'postscale' in request.args.keys():
+		postscale = int(request.args['postscale'])
 	if 'mode' in request.args.keys():
 		mode = request.args['mode']
 	if 'temperature' in request.args.keys():
@@ -56,13 +61,25 @@ def send_ir_data_msz_gv2216():
 		wind = request.args['wind']
 	if 'louver' in request.args.keys():
 		louver = request.args['louver']
+	if 'clean' in request.args.keys():
+		clean = request.args['clean']
+        else:
+                clean = "off"
+	if 'powerful' in request.args.keys():
+		powerful = request.args['powerful']
+        else:
+                powerful = "off"
 	msz_gv2216 = MSZ_GV2216()
-	result = msz_gv2216.get_ir_data(mode = mode,temperature = temperature,wind = wind,louver = louver )
+	result = msz_gv2216.get_ir_data(mode = mode,temperature = temperature,wind = wind,louver = louver, clean=clean, powerful=powerful, postscale=postscale )
         import datetime
         if not wind in ["Auto", "All"]:
                 wind = int(wind)
         if not louver in ["Auto", "All"]:
                 louver = int(louver)
+        if not clean in ["on", "off"]:
+                clean = int(clean)
+        if not powerful in ["on", "off"]:
+                powerful = int(powerful)
         d = {"timestamp":datetime.datetime.now().strftime("%Y/%m/%d %H:%M:%S"), "mode":mode, "temperature":int(temperature), "wind":wind, "louver":louver}
         write_log(d)
 	# print result
